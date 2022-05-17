@@ -3,12 +3,13 @@ using RecipeMateDomain.Factories;
 using RecipeMateModels.Models.Recipe;
 using RecipeMateModels.Models.Units;
 using System;
+using System.Collections;
 using System.Linq;
 
 namespace RecipeMateTests.RecipeTests
 {
     [TestFixture]
-    public class CreateRecipeTests
+    public class RecipeTests
     {
         [Test]
         public void CreateRecipe()
@@ -28,20 +29,29 @@ namespace RecipeMateTests.RecipeTests
             mixTomatoWithWater.Instruction = "Combine ";
             recipe.Steps.Add(mixTomatoWithWater);
 
-            Step<Unit> pourSoupInToBowl = new();
-            Equipment bowl = new Equipment();
+        }
 
-            pourSoupInToBowl.Equipment.Add(bowl);
-            pourSoupInToBowl.Instruction = "Pour Soup in to bowl";
-            recipe.Steps.Add(pourSoupInToBowl);
+        [TestFixture]
+        public class IngredientTests
+        {
+            [TestCaseSource(typeof(RecipeTestData), nameof(RecipeTestData.TestCases))]
+            public void IngredientMeasurementIsCorrect(Ingredient<Unit> ingredient, decimal result)
+            {
+                ingredient.Quantity.Should().Be(500);
 
-            recipe.Steps.First().Equipment.Should().Contain(whisk);
-            recipe.Steps.First().Should().Be(mixTomatoWithWater);
-            recipe.Steps.First().Instruction.Should().Be("Combine ");
+            }
+        }
 
-            recipe.Steps.Last().Equipment.Should().Contain(bowl);
-            recipe.Steps.Last().Should().Be(pourSoupInToBowl);
-            recipe.Steps.Last().Instruction.Should().Be("Pour Soup in to bowl");
+        public class RecipeTestData
+        {
+            public static IEnumerable TestCases
+            {
+                get
+                {
+                    yield return new TestCaseData(IngredientFactory.CreateIngredient(Measurements.Gram, 500), 500);
+                    yield return new TestCaseData(new Recipe()).Returns(true);
+                }
+            }
         }
     }
 
