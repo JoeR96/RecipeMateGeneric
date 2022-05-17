@@ -3,13 +3,13 @@ using RecipeMateModels.Models.Recipe;
 
 namespace RecipeMatePersistence.Persistence
 {
-    public class RecipeContext : DbContext
+    public class RecipeMateDbContext : DbContext
     {
-        public RecipeContext(DbContextOptions<RecipeContext> options)
+        public RecipeMateDbContext(DbContextOptions<RecipeMateDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Recipe> Items { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
     }
 }

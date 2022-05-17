@@ -9,8 +9,8 @@ namespace RecipeMateDomain.Service
 
         Task<bool> DeleteRecipeAsync(string userId, Guid itemId, CancellationToken cancellationToken);
 
-        Task<RecipeModel?> GetAsync(string userId, Guid itemId, CancellationToken cancellationToken);
+        //Task<RecipeModel?> GetAsync(string userId, Guid itemId, CancellationToken cancellationToken);
 
-        Task<RecipeListViewModel> GetListAsync(string userId, CancellationToken cancellationToken);
+        //Task<RecipeListViewModel> GetListAsync(string userId, CancellationToken cancellationToken);
     }
 }

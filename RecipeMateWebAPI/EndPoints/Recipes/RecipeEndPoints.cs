@@ -39,19 +39,19 @@ namespace RecipeMateWebAPI.EndPoints.Recipes
                
         //}
 
-        public static IEndpointRouteBuilder MapTodoApiRoutes(this IEndpointRouteBuilder builder)
-        {
-            builder.MapGet("/api/recipes", async (
-                IRecipeService service,
-                ClaimsPrincipal user,
-                CancellationToken cancellationToken) =>
-                {
-                    return await service.GetListAsync(user.GetUserId, cancellationToken);
-                }
-                )
-                .RequireAuthorization();
+        //public static IEndpointRouteBuilder MapTodoApiRoutes(this IEndpointRouteBuilder builder)
+        //{
+        //    builder.MapGet("/api/recipes", async (
+        //        IRecipeService service,
+        //        ClaimsPrincipal user,
+        //        CancellationToken cancellationToken) =>
+        //        {
+        //            return await service.GetListAsync(user.GetUserId, cancellationToken);
+        //        }
+        //        )
+        //        .RequireAuthorization();
 
-        }
+        //}
     
     }
 }

@@ -3,7 +3,7 @@ using RecipeMateModels.Models.Units;
 
 namespace RecipeMateModels.Models.Recipe
 {
-    public class Recipe
+    public class Recipe : Entity
     {
         public long Id { get; set; }
         public string UserId { get; set; }
