@@ -3,6 +3,7 @@ using RecipeMateDomain.Factories;
 using RecipeMateModels.Models.Step;
 using RecipeMateModels.RequestModels.Equipment;
 using RecipeMateModels.RequestModels.Ingredient;
+using RecipeMateTests.Builders;
 using System.Linq;
 
 namespace RecipeMateTests.StepTests
@@ -13,6 +14,12 @@ namespace RecipeMateTests.StepTests
         [Test]
         public void CreateStep()
         {
+            StepModel stepModel = new StepModelBuilder()
+                .WithEquipment("Knife")
+                .WithEquipment("Chopping Board")
+                .WithIngredient("Onion", 1)
+                .Build();
+                
             var model = new StepModel
             {
                 Step = "Dice Onions",
