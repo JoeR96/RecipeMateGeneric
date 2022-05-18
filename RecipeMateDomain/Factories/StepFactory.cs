@@ -2,6 +2,7 @@
 using RecipeMateModels.Models.Step;
 using RecipeMateModels.Models.Units;
 using RecipeMateModels.RequestModels.Ingredient;
+using System.Collections.Generic;
 
 namespace RecipeMateDomain.Factories
 {
@@ -17,7 +18,7 @@ namespace RecipeMateDomain.Factories
             };
         }
 
-        private static List<Ingredient<Unit>> MapIngredients(StepModel model)
+        private static List<IIngredient<Unit>> MapIngredients(StepModel model)
         {
            return model.Ingredients.Select(x => new Ingredient<Unit>()
             {
@@ -25,7 +26,7 @@ namespace RecipeMateDomain.Factories
                 Quantity = x.Quantity,
                 RecipeId = IsRecipe(x) ? 
                 0 : x.RecipeId
-            }).ToList();
+            }).ToList().ConvertAll(o => (IIngredient<Unit>)o);
 
         }
 

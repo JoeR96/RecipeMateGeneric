@@ -56,7 +56,7 @@ namespace RecipeMateTests.RecipeTests
 
             recipeService.Setup(x => x.AddRecipeAsync(It.IsAny<RecipeModel>())).ReturnsAsync(recipe);
 
-            Task<IResult> result = await RecipeEndPoints.CreateAsync(recipeService.Object, new RecipeValidator(), recipe);
+            //Task<IResult> result = await RecipeEndPoints.CreateAsync(recipeService.Object, new RecipeValidator(), recipe);
         }
     }
 }

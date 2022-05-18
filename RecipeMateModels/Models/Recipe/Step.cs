@@ -6,7 +6,7 @@ namespace RecipeMateModels.Models.Recipe
     {
         public string Instruction { get; set; }
         public List<Equipment> Equipment { get; set; }
-        public List<Ingredient<Unit>> Ingredients { get; set; }
+        public List<IIngredient<Unit>> Ingredients { get; set; }
         public TimeOnly Time { get; set; }
     }
 
@@ -15,7 +15,7 @@ namespace RecipeMateModels.Models.Recipe
 
         public string Instruction { get; set; }
         public List<Equipment> Equipment { get; set; } = new List<Equipment>();
-        public List<Ingredient<Unit>> Ingredients { get; set; }
+        public List<IIngredient<Unit>> Ingredients { get; set; }
         public TimeOnly Time { get; set; }
     }
 
