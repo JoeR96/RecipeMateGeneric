@@ -15,7 +15,6 @@ namespace RecipeMateTests
 
             var dbContextOptions = builder.Options;
             recipeContext = new RecipeMateDbContext(dbContextOptions);
-            // Delete existing db before creating a new one
             recipeContext.Database.EnsureDeleted();
             recipeContext.Database.EnsureCreated();
         }

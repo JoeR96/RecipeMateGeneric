@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="RequestModels\Ingredient\" />
+    <Folder Include="RequestModels\Recipe\" />
+    <Folder Include="RequestModels\Step\" />
+  </ItemGroup>
+
 </Project>

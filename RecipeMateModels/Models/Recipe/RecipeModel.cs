@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RecipeMateModels.Models.Step;
+using RecipeMateModels.RequestModels.Equipment;
+using RecipeMateModels.RequestModels.Ingredient;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipeMateModels.Models.Recipe
 {
-    internal class RecipeModel
+    public class RecipeModel
     {
+        [Required]
+        public string UserId { get; set; }
+        public long Id { get; set; }
+        public TimeOnly PrepTime { get; set; }
+        public TimeOnly CookTime { get; set; }
+        public List<IngredientModel> Ingredients { get; set; }
+        public List<StepModel> Steps { get; set; }
+        public List<EquipmentModel> Equipment { get; set; }
     }
 }

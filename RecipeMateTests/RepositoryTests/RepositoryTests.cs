@@ -1,9 +1,7 @@
 ﻿using FluentAssertions;
 using RecipeMateDomain.Factories;
-using RecipeMateModels.Models;
 using RecipeMateModels.Models.Recipe;
 using RecipeMateModels.Models.Units;
-using RecipeMatePersistence.Repository;
 using System.Linq;
 
 namespace RecipeMateTests
@@ -37,6 +35,7 @@ namespace RecipeMateTests
 
             pourSoupInToBowl.Equipment.Add(bowl);
             pourSoupInToBowl.Instruction = "Pour Soup in to bowl";
+            recipe.Steps.Add(pourSoupInToBowl);
 
             repo.Insert(recipe);
  

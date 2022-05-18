@@ -1,57 +1,36 @@
-﻿using RecipeMateDomain.Service;
-using System.Security.Claims;
+﻿using FluentValidation;
+using RecipeMateDomain.Service;
+using RecipeMateModels.Models.Recipe;
 
 namespace RecipeMateWebAPI.EndPoints.Recipes
 {
     public static class RecipeEndPoints
     {
-        //public static IServiceCollection AddToApi(this IServiceCollection services)
-        //{
-        //    services.AddScoped<IRecipeRepository, RecipeRepository>();
-        //    services.AddScoped<IRecipeService, RecipeService>();
+        public static void MapGuitarEndpoints(this WebApplication app)
+        {
+            app.MapPost("/recipe/create", CreateAsync);
+            //app.MapGet("/recipe/{id}", ReadAsync);
+            //app.MapGet("/recipe", ReallAllAsync);
+            //app.MapPut("/recipe", UpdateAsync);
+            //app.MapDelete("/recipe/{id}", DeleteAsync);
+        }
 
-        //    services.AddSingleton<IClock>(_ => SystemClock.Instance);
-        //    services.AddDbContext<RecipeContext>((serviceProvider, options) =>
-        //    {
-        //        var configuration = serviceProvider.GetRequiredService<IConfiguration>();
-        //        var dataDirectory = configuration["DataDirectory"];
+        public static void AddGuitarServices(this WebApplicationBuilder builder, string repositoryImplementation)
+        {
+            builder.Services.AddScoped<IRecipeService, RecipeService>();
+            builder.Services.AddScoped<IRecipeService, RecipeService>();
+        }
 
-        //        if (string.IsNullOrEmpty(dataDirectory) || !Path.IsPathRooted(dataDirectory))
-        //        {
-        //            var environment = serviceProvider.GetRequiredService<IHostEnvironment>();
-        //            dataDirectory = Path.Combine(environment.ContentRootPath, "App_Data");
-        //        }
+        public async static Task<IResult> CreateAsync(IRecipeService recipeService, IValidator<RecipeModel> validator, RecipeModel recipe)
+        {
+            var validationResult = validator.Validate(recipe);
+            if (!validationResult.IsValid)
+            {
+                return Results.BadRequest(new { errors = validationResult.Errors.Select(x => x.ErrorMessage) });
+            }
 
-        //        // Ensure the configured data directory exists
-        //        if (!Directory.Exists(dataDirectory))
-        //        {
-        //            Directory.CreateDirectory(dataDirectory);
-        //        }
-
-        //        var databaseFile = Path.Combine(dataDirectory, "TodoApp.db");
-        //        //change this to SQL DB when DB is created(seed?)
-        //        options.UseSqlServer("Data Source=" + databaseFile);
-        //    });
-
-        //    return services;
-        //});
-
-               
-        //}
-
-        //public static IEndpointRouteBuilder MapTodoApiRoutes(this IEndpointRouteBuilder builder)
-        //{
-        //    builder.MapGet("/api/recipes", async (
-        //        IRecipeService service,
-        //        ClaimsPrincipal user,
-        //        CancellationToken cancellationToken) =>
-        //        {
-        //            return await service.GetListAsync(user.GetUserId, cancellationToken);
-        //        }
-        //        )
-        //        .RequireAuthorization();
-
-        //}
-    
+            recipe = await recipeService.AddRecipeAsync(recipe);
+            return Results.Created($"/recipe/{recipe.Id}", recipe);
+        }
     }
 }

@@ -7,17 +7,16 @@ namespace RecipeMateDomain.Factories
     {
         public static IIngredient<Unit> CreateIngredient(Measurements m, decimal quantity )
         {
-            IIngredient<Unit> ingredient = m switch
+            return m switch
             {
-                Measurements.Gram => new Ingredient<Gram>(),
-                Measurements.Milliliter => new Ingredient<Milliliter>(),
-                Measurements.Tablespoon => new Ingredient<Tablespoon>(),
-                Measurements.Teaspoon => new Ingredient<Teaspoon>(),
-                Measurements.Cup => new Ingredient<Cup>(),
+                Measurements.Gram => new Ingredient<Gram>(quantity),
+                Measurements.Milliliter => new Ingredient<Milliliter>(quantity),
+                Measurements.Tablespoon => new Ingredient<Tablespoon>(quantity),
+                Measurements.Teaspoon => new Ingredient<Teaspoon>(quantity),
+                Measurements.Cup => new Ingredient<Cup>(quantity),
                 _ => throw new NotImplementedException()
             };
-            ingredient.Quantity = quantity;
-            return ingredient;
+           
         }
     }
 
