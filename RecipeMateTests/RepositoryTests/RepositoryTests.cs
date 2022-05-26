@@ -2,6 +2,8 @@
 using RecipeMateDomain.Factories;
 using RecipeMateModels.Models.Recipe;
 using RecipeMateModels.Models.Units;
+using RecipeMateModels.RequestModels.Ingredient;
+using RecipeMateTests.Builders;
 using System.Linq;
 
 namespace RecipeMateTests
@@ -15,8 +17,22 @@ namespace RecipeMateTests
             var helper = new TestHelper();
 
             var repo = helper.GetInMemoryRepository<Recipe>();
-            IIngredient<Unit> Tomato = IngredientFactory.CreateIngredient(Measurements.Gram, 500);
-            IIngredient<Unit> Water = IngredientFactory.CreateIngredient(Measurements.Milliliter, 500);
+
+
+            IngredientModel tomatoModel = new IngredientModelBuilder()
+                .WithName("Tomato")
+                .WithQuantity(500)
+                .WithUnitType("Gram")
+                .Build();
+
+            IngredientModel waterModel = new IngredientModelBuilder()
+                .WithName("Water")
+                .WithQuantity(500)
+                .WithUnitType("Milliliter")
+                .Build();
+
+            IIngredient<Unit> Tomato = IngredientFactory.CreateIngredient(tomatoModel);
+            IIngredient<Unit> Water = IngredientFactory.CreateIngredient(waterModel);
 
             Recipe recipe = new();
 

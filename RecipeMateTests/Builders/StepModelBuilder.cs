@@ -7,7 +7,7 @@ namespace RecipeMateTests.Builders
     public class StepModelBuilder :
     Builder<StepModel, StepModelBuilder>
     {
-        private StepModel stepModel;
+        private StepModel stepModel = new StepModel();
 
         protected override StepModelBuilder This
         {
@@ -23,6 +23,12 @@ namespace RecipeMateTests.Builders
         {
             var ingredient = IngredientModelFactory.CreateIngredientModel(name, quantity);
             stepModel.Ingredients.Add(ingredient);
+
+            return This;
+        }
+        public StepModelBuilder WithInstruction(string step)
+        {
+            stepModel.Step = step;
 
             return This;
         }

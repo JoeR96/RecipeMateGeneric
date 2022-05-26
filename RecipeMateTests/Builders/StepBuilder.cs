@@ -1,6 +1,8 @@
 ﻿using RecipeMateDomain.Factories;
 using RecipeMateModels.Models.Recipe;
 using RecipeMateModels.Models.Units;
+using RecipeMateModels.RequestModels.Equipment;
+using RecipeMateModels.RequestModels.Ingredient;
 
 namespace RecipeMateTests.Builders
 {
@@ -19,9 +21,13 @@ namespace RecipeMateTests.Builders
             return step;
         }
 
-        public StepBuilder WithIngredient(Measurements m,decimal quantity) 
+        public StepBuilder WithIngredient(string unitType,decimal quantity) 
         {
-            var ingredient = IngredientFactory.CreateIngredient(m, quantity);
+            var ingredient = IngredientFactory.CreateIngredient(new IngredientModel
+            {
+                UnitType = unitType,
+                Quantity = quantity,
+            });
             step.Ingredients.Add(ingredient);
 
             return This;
@@ -29,7 +35,12 @@ namespace RecipeMateTests.Builders
 
         public StepBuilder WithEquipment(string name)
         {
-            var equipment = EquipmentFactory.CreateEquipment(name);
+            var equipmentModel = new EquipmentModel
+            {
+                Name = name,
+            };
+
+            var equipment = EquipmentFactory.CreateEquipment(equipmentModel);
             step.Equipment.Add(equipment);
 
             return This;

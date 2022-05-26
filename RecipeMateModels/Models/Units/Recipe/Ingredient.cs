@@ -23,11 +23,6 @@ namespace RecipeMateModels.Models.Recipe
             get { return IsRecipe; }
             set { IsRecipe = RecipeId == 0 ? false : value; }
         }
-
-        public Ingredient(decimal quantity = 0)
-        {
-            Quantity = quantity;
-        }
     }
 
     

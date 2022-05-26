@@ -1,10 +1,6 @@
-﻿using FluentAssertions;
-using RecipeMateDomain.Factories;
+﻿using RecipeMateDomain.Factories;
 using RecipeMateModels.Models.Recipe;
-using RecipeMateModels.Models.Units;
-using System;
-using System.Collections;
-using System.Linq;
+using RecipeMateTests.Builders;
 
 namespace RecipeMateTests.RecipeTests
 {
@@ -14,21 +10,13 @@ namespace RecipeMateTests.RecipeTests
         [Test]
         public void CreateRecipe()
         {
-            //IIngredient<Unit> Tomato = IngredientFactory.CreateIngredient(Measurements.Gram, 500);
-            //IIngredient<Unit> Water = IngredientFactory.CreateIngredient(Measurements.Milliliter, 500);
+            RecipeModel recipeModel = new RecipeModel();
 
-            //Recipe recipe = new();
-
-            //recipe.Ingredients.Add(Tomato);
-            //recipe.Ingredients.Add(Water);
-
-            //Step<Unit> mixTomatoWithWater = new();
-            //Equipment whisk = new Equipment();
-
-            //mixTomatoWithWater.Equipment.Add(whisk);
-            //mixTomatoWithWater.Instruction = "Combine ";
-            //recipe.Steps.Add(mixTomatoWithWater);
-
+            //recipeModel.Ingredients = new List<Ingredient>()
+            //{
+            //    new IngredientBuilder().
+            //}
+            RecipeFactory.CreateRecipe(recipeModel);
         }   
     }
 

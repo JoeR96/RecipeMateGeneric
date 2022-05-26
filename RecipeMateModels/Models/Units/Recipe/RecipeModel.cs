@@ -12,8 +12,8 @@ namespace RecipeMateModels.Models.Recipe
         public long Id { get; set; }
         public TimeOnly PrepTime { get; set; }
         public TimeOnly CookTime { get; set; }
-        public List<IngredientModel> Ingredients { get; set; }
-        public List<StepModel> Steps { get; set; }
-        public List<EquipmentModel> Equipment { get; set; }
+        public List<IngredientModel> Ingredients { get; set; } = new();
+        public List<StepModel> Steps { get; set; } = new();
+        public List<EquipmentModel> Equipment { get; set; } = new();
     }
 }
