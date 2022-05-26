@@ -40,14 +40,17 @@ namespace RecipeMateTests
             recipe.Ingredients.Add(Water);
 
             Step<Unit> mixTomatoWithWater = new();
-            Equipment whisk = new Equipment();
-
+            Equipment whisk = new EquipmentBuilder()
+                            .WithName("Whisk")
+                            .Build();
             mixTomatoWithWater.Equipment.Add(whisk);
             mixTomatoWithWater.Instruction = "Combine ";
             recipe.Steps.Add(mixTomatoWithWater);
 
             Step<Unit> pourSoupInToBowl = new();
-            Equipment bowl = new Equipment();
+            Equipment bowl = new EquipmentBuilder()
+                .WithName("Bowl")
+                .Build();
 
             pourSoupInToBowl.Equipment.Add(bowl);
             pourSoupInToBowl.Instruction = "Pour Soup in to bowl";

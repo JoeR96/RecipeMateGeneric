@@ -9,8 +9,8 @@ namespace RecipeMateModels.Models.Recipe
         [Key]
         public long Id { get; set; }
         public string UserId { get; set; }
-        public TimeOnly PrepTime { get; set; }
-        public TimeOnly CookTime { get; set; }
+        public DateTime PrepTime { get; set; }
+        public DateTime CookTime { get; set; }
         public DateTime CreatedAt { get; set; }
         public List<IIngredient<Unit>> Ingredients = new();
         public List<IStep<Unit>> Steps = new();

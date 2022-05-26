@@ -15,9 +15,6 @@ namespace RecipeMateDomain.Factories
             return ingredient;
         }
 
-
-
-        //Old Scenario
         public static IIngredient<Unit> CreateIngredientFromUnit(string unitType)
         {
             Measurements m = EnumHelper.ParseEnum<Measurements>(unitType);
